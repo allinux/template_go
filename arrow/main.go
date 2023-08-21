@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 
+	
 	"github.com/apache/arrow/go/arrow/memory"
 	"github.com/apache/arrow/go/v12/arrow/array"
 	"github.com/apache/arrow/go/v12/parquet/file"
