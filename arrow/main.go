@@ -27,6 +27,19 @@ func create_client(profileName string) *s3.Client {
 	return s3.NewFromConfig(cfg)
 }
 
+func UploadS3File(objectKey string, bucket string, s3Client *s3.Client, data []byte) error {
+	uploader := manager.NewUploader(s3Client)
+	_, err := uploader.Upload(context.TODO(), &s3.PutObjectInput{
+		Bucket: &bucket,
+		Key:    &objectKey,
+		Body:   bytes.NewReader(data),
+	})
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func DownloadS3File(objectKey string, bucket string, s3Client *s3.Client) ([]byte, error) {
 	buffer := manager.NewWriteAtBuffer([]byte{})
 	downloader := manager.NewDownloader(s3Client)
