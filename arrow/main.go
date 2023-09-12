@@ -60,7 +60,7 @@ func DownloadS3FileToBuffer(objectKey string, bucket string, s3Client *s3.Client
 
 func main() {
     s3client := create_client("")
-	contents, _ := DownloadS3File("sample.parquet", "yhjung-data", s3client)
+	contents, _ := DownloadS3FileToBuffer("sample.parquet", "yhjung-data", s3client)
 	rf := bytes.NewReader(contents)
 
     rdr, _ := file.NewParquetReader(rf)
